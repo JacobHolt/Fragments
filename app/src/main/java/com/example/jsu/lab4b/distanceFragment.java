@@ -5,25 +5,32 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class distanceFragment extends Fragment {
+public class distanceFragment extends Fragment implements View.OnClickListener {
 
     public distanceFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_distance, container, false);
+        View v = inflater.inflate(R.layout.fragment_distance, container, false);
+
+        Button b = (Button)v.findViewById(R.id.distanceConverter); // Acquire button reference
+        b.setOnClickListener(this);                     // Set event handler
+
+        return v;
+
     }
 
-    public void convertDistanceClicked(View v) {
+    public void onClick(View v) {
         String m = ((EditText) getActivity().findViewById(R.id.inputM)).getText().toString();
         String k = ((EditText) getActivity().findViewById(R.id.inputK)).getText().toString();
         if (  m.isEmpty() ) {
